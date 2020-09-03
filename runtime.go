@@ -1151,6 +1151,7 @@ func (r *Runtime) compile(name, src string, strict, eval bool) (p *Program, err 
 
 // RunString executes the given string in the global context.
 func (r *Runtime) RunString(str string) (Value, error) {
+	fmt.Print(".................RunString(%s).................", str)
 	return r.RunScript("", str)
 }
 
