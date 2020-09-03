@@ -7,7 +7,7 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/dop251/goja/unistring"
+	"github.com/gentzeng/goja/unistring"
 )
 
 type sparseArrayItem struct {

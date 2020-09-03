@@ -10,9 +10,9 @@ import (
 	"unicode/utf16"
 	"unicode/utf8"
 
-	"github.com/dop251/goja/file"
-	"github.com/dop251/goja/token"
-	"github.com/dop251/goja/unistring"
+	"github.com/gentzeng/goja/file"
+	"github.com/gentzeng/goja/token"
+	"github.com/gentzeng/goja/unistring"
 )
 
 var matchIdentifier = regexp.MustCompile(`^[$_\p{L}][$_\p{L}\d}]*$`)

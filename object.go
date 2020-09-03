@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"sort"
 
-	"github.com/dop251/goja/unistring"
+	"github.com/gentzeng/goja/unistring"
 )
 
 const (

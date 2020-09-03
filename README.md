@@ -3,7 +3,7 @@ goja
 
 ECMAScript 5.1(+) implementation in Go.
 
-[![GoDoc](https://godoc.org/github.com/dop251/goja?status.svg)](https://godoc.org/github.com/dop251/goja)
+[![GoDoc](https://godoc.org/github.com/gentzeng/goja?status.svg)](https://godoc.org/github.com/gentzeng/goja)
 
 Goja is an implementation of ECMAScript 5.1 in pure Go with emphasis on standard compliance and
 performance.
@@ -19,7 +19,7 @@ Features
  * Passes nearly all [tc39 tests](https://github.com/tc39/test262) tagged with es5id. The goal is to pass all of them. Note, the last working commit is https://github.com/tc39/test262/commit/1ba3a7c4a93fc93b3d0d7e4146f59934a896837d. The next commit made use of template strings which goja does not support.
  * Capable of running Babel, Typescript compiler and pretty much anything written in ES5.
  * Sourcemaps.
- * Some ES6 functionality, still work in progress, see https://github.com/dop251/goja/milestone/1?closed=1
+ * Some ES6 functionality, still work in progress, see https://github.com/gentzeng/goja/milestone/1?closed=1
  
 FAQ
 ---
@@ -29,7 +29,7 @@ FAQ
 Although it's faster than many scripting language implementations in Go I have seen 
 (for example it's 6-7 times faster than otto on average) it is not a
 replacement for V8 or SpiderMonkey or any other general-purpose JavaScript engine.
-You can find some benchmarks [here](https://github.com/dop251/goja/issues/2).
+You can find some benchmarks [here](https://github.com/gentzeng/goja/issues/2).
 
 ### Why would I want to use it over a V8 wrapper?
 
@@ -55,13 +55,13 @@ it's not possible to pass object values between runtimes.
 
 setTimeout() assumes concurrent execution of code which requires an execution
 environment, for example an event loop similar to nodejs or a browser.
-There is a [separate project](https://github.com/dop251/goja_nodejs) aimed at providing some NodeJS functionality,
+There is a [separate project](https://github.com/gentzeng/goja_nodejs) aimed at providing some NodeJS functionality,
 and it includes an event loop.
 
 ### Can you implement (feature X from ES6 or higher)?
 
 Some ES6 functionality has been implemented. So far this is mostly built-ins, not syntax enhancements.
-See https://github.com/dop251/goja/milestone/1 for more details.
+See https://github.com/gentzeng/goja/milestone/1 for more details.
 
 The ongoing work is done in the es6 branch which is merged into master when appropriate. Every commit
 in this branch represents a relatively stable state (i.e. it compiles and passes all enabled tc39 tests),
@@ -69,7 +69,7 @@ however because the version of tc39 tests I use is quite old, it may be not as w
 functionality. Because ES6 is a superset of ES5.1 it should not break your existing code.
 
 I will be adding features in their dependency order and as quickly as my time allows. Please do not ask
-for ETAs. Features that are open in the [milestone](https://github.com/dop251/goja/milestone/1) are either in progress
+for ETAs. Features that are open in the [milestone](https://github.com/gentzeng/goja/milestone/1) are either in progress
 or will be worked on next.
 
 ### How do I contribute?
@@ -103,13 +103,13 @@ if num := v.Export().(int64); num != 4 {
 
 Passing Values to JS
 --------------------
-Any Go value can be passed to JS using Runtime.ToValue() method. See the method's [documentation](https://godoc.org/github.com/dop251/goja#Runtime.ToValue) for more details.
+Any Go value can be passed to JS using Runtime.ToValue() method. See the method's [documentation](https://godoc.org/github.com/gentzeng/goja#Runtime.ToValue) for more details.
 
 Exporting Values from JS
 ------------------------
 A JS value can be exported into its default Go representation using Value.Export() method.
 
-Alternatively it can be exported into a specific Go variable using [Runtime.ExportTo()](https://godoc.org/github.com/dop251/goja#Runtime.ExportTo) method.
+Alternatively it can be exported into a specific Go variable using [Runtime.ExportTo()](https://godoc.org/github.com/gentzeng/goja#Runtime.ExportTo) method.
 
 Within a single export operation the same Object will be represented by the same Go value (either the same map, slice or
 a pointer to the same struct). This includes circular objects and makes it possible to export them.
@@ -118,7 +118,7 @@ Calling JS functions from Go
 ----------------------------
 There are 2 approaches:
 
-- Using [AssertFunction()](https://godoc.org/github.com/dop251/goja#AssertFunction):
+- Using [AssertFunction()](https://godoc.org/github.com/gentzeng/goja#AssertFunction):
 ```go
 vm := New()
 _, err := vm.RunString(`
@@ -141,7 +141,7 @@ if err != nil {
 fmt.Println(res)
 // Output: 42
 ```
-- Using [Runtime.ExportTo()](https://godoc.org/github.com/dop251/goja#Runtime.ExportTo):
+- Using [Runtime.ExportTo()](https://godoc.org/github.com/gentzeng/goja#Runtime.ExportTo):
 ```go
 const SCRIPT = `
 function f(param) {
@@ -172,7 +172,7 @@ Mapping struct field and method names
 -------------------------------------
 By default, the names are passed through as is which means they are capitalised. This does not match
 the standard JavaScript naming convention, so if you need to make your JS code look more natural or if you are
-dealing with a 3rd party library, you can use a [FieldNameMapper](https://godoc.org/github.com/dop251/goja#FieldNameMapper):
+dealing with a 3rd party library, you can use a [FieldNameMapper](https://godoc.org/github.com/gentzeng/goja#FieldNameMapper):
 
 ```go
 vm := New()
@@ -186,8 +186,8 @@ fmt.Println(res.Export())
 // Output: 42
 ```
 
-There are two standard mappers: [TagFieldNameMapper](https://godoc.org/github.com/dop251/goja#TagFieldNameMapper) and
-[UncapFieldNameMapper](https://godoc.org/github.com/dop251/goja#UncapFieldNameMapper), or you can use your own implementation.
+There are two standard mappers: [TagFieldNameMapper](https://godoc.org/github.com/gentzeng/goja#TagFieldNameMapper) and
+[UncapFieldNameMapper](https://godoc.org/github.com/gentzeng/goja#UncapFieldNameMapper), or you can use your own implementation.
 
 Native Constructors
 -------------------
@@ -305,4 +305,4 @@ func TestInterrupt(t *testing.T) {
 NodeJS Compatibility
 --------------------
 
-There is a [separate project](https://github.com/dop251/goja_nodejs) aimed at providing some of the NodeJS functionality.
+There is a [separate project](https://github.com/gentzeng/goja_nodejs) aimed at providing some of the NodeJS functionality.
