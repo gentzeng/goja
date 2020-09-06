@@ -1171,12 +1171,19 @@ func (r *Runtime) RunString(str string) (Value, error) {
 
 // RunScript executes the given string in the global context.
 func (r *Runtime) RunScript(name, src string) (Value, error) {
-	fmt.Printf("...................RunScript.......................\n%s\n...................................................\n", src)
+	fmt.Printf("...................RunScript1......................\n%s\n...................................................\n", src)
 	p, err := Compile(name, src, false)
 
 	if err != nil {
 		return nil, err
 	}
+
+	codeStr := fmt.Sprintf("%v", p.code)
+	valuesStr := fmt.Sprintf("%v", p.values)
+	funcNameStr := fmt.Sprintf("%v", p.funcName)
+	srcStr := fmt.Sprintf("%v", p.src)
+	srcMapStr := fmt.Sprintf("%v", p.srcMap)
+	fmt.Printf("...................RunScript2......................\ncodeStr = %\nvaluesStr = %s\nfuncNameStr = %s\nsrcStr = %s\nsrcMapStr = %s\n...................................................\n", codeStr, valuesStr, funcNameStr, srcStr, srcMapStr )
 
 	return r.RunProgram(p)
 }
