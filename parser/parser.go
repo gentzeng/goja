@@ -135,13 +135,15 @@ func ReadSource(filename string, src interface{}) ([]byte, error) {
 //      program, err := parser.ParseFile(nil, "", `if (abc > 1) {}`, 0)
 //
 func ParseFile(fileSet *file.FileSet, filename string, src interface{}, mode Mode) (*ast.Program, error) {
-	fmt.Printf("...................ParseFile.......................\nfilename = %s\n...................................................\n", filename)
+	interfaceStr := fmt.Sprintf("%v", src)
+	fmt.Printf("...................ParseFile.......................\ninterface = %s\n...................................................\n", interfaceStr)
 	str, err := ReadSource(filename, src)
 	if err != nil {
 		return nil, err
 	}
 	{
 		str := string(str)
+	fmt.Printf("...................ParseFile.......................\nstr = %s\n...................................................\n", str)
 
 		base := 1
 		if fileSet != nil {
