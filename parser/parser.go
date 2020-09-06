@@ -188,6 +188,9 @@ func (self *_parser) slice(idx0, idx1 file.Idx) string {
 func (self *_parser) parse() (*ast.Program, error) {
 	self.next()
 	program := self.parseProgram()
+	programStr := fmt.Sprintf("%v", program)
+	fmt.Printf(".....................parse().......................\nprogramStr = %s\n...................................................\n", programStr)
+
 	if false {
 		self.errors.Sort()
 	}
