@@ -188,7 +188,7 @@ func (self *_parser) slice(idx0, idx1 file.Idx) string {
 func (self *_parser) parse() (*ast.Program, error) {
 	self.next()
 	program := self.parseProgram()
-	programStr := fmt.Sprintf("%v", program)
+	programBodyStr := fmt.Sprintf("%v", program)
 	fmt.Printf(".....................parse().......................\nprogramStr = %s\n...................................................\n", programStr)
 
 	if false {
@@ -199,6 +199,11 @@ func (self *_parser) parse() (*ast.Program, error) {
 
 func (self *_parser) next() {
 	self.token, self.literal, self.parsedLiteral, self.idx = self.scan()
+	tokenStr := fmt.Sprintf("%v", self.token)
+	literalStr := fmt.Sprintf("%v", self.literal)
+	parsedLiteralStr := fmt.Sprintf("%v", self.parsedLiteral)
+	idxStr := fmt.Sprintf("%v", self.idx)
+	fmt.Printf("...................next().......................\ntoken = %s\nliteral = %s\nparsedLiteral = %s\nidx = %s\n...................................................\n", tokenStr, literalStr, parsedLiteralStr, idxStr)
 }
 
 func (self *_parser) optionalSemicolon() {
