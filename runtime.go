@@ -1061,6 +1061,7 @@ func New() *Runtime {
 // method. This representation is not linked to a runtime in any way and can be run in multiple runtimes (possibly
 // at the same time).
 func Compile(name, src string, strict bool) (*Program, error) {
+	fmt.Printf("....................Compile........................\n%s\n...................................................\n", src)
 	return compile(name, src, strict, false)
 }
 
@@ -1083,6 +1084,7 @@ func MustCompile(name, src string, strict bool) *Program {
 }
 
 func compile(name, src string, strict, eval bool) (p *Program, err error) {
+	fmt.Printf("....................compile........................\n%s\n...................................................\n", src)
 	prg, err1 := parser.ParseFile(nil, name, src, 0)
 	if err1 != nil {
 		switch err1 := err1.(type) {
@@ -1111,6 +1113,7 @@ func compile(name, src string, strict, eval bool) (p *Program, err error) {
 }
 
 func compileAST(prg *js_ast.Program, strict, eval bool) (p *Program, err error) {
+	fmt.Printf("....................compileAST.....................\n%s\n...................................................\n", src)
 	c := newCompiler()
 	c.scope.strict = strict
 	c.scope.eval = eval
@@ -1151,13 +1154,13 @@ func (r *Runtime) compile(name, src string, strict, eval bool) (p *Program, err 
 
 // RunString executes the given string in the global context.
 func (r *Runtime) RunString(str string) (Value, error) {
-	fmt.Printf(
-	  "...................RunString.......................\n%s\n...................................................\n", str)
+	fmt.Printf("...................RunString.......................\n%s\n...................................................\n", str)
 	return r.RunScript("", str)
 }
 
 // RunScript executes the given string in the global context.
 func (r *Runtime) RunScript(name, src string) (Value, error) {
+	fmt.Printf("...................RunScript.......................\n%s\n...................................................\n", src)
 	p, err := Compile(name, src, false)
 
 	if err != nil {
