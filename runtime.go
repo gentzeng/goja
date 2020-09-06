@@ -1113,8 +1113,11 @@ func compile(name, src string, strict, eval bool) (p *Program, err error) {
 }
 
 func compileAST(prg *js_ast.Program, strict, eval bool) (p *Program, err error) {
-	prgStr := fmt.Sprintf("%v", prg)
-	fmt.Printf("....................compileAST.....................\nprgStr = %s\n...................................................\n", prgStr )
+	bodyStr := fmt.Sprintf("%v", prg.Body)
+	declStr := fmt.Sprintf("%v", prg.DeclarationList)
+	fileStr := fmt.Sprintf("%v", prg.File)
+	smapStr := fmt.Sprintf("%v", prg.SourceMap)
+	fmt.Printf("....................compileAST.....................\nbodyStr = %\ndeclStr = %s\nfileStr = %s\nsmapStr = %s\n...................................................\n", bodyStr, declStr, fileStr, smapStr )
 	c := newCompiler()
 	c.scope.strict = strict
 	c.scope.eval = eval
