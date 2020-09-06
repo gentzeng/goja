@@ -1136,11 +1136,13 @@ func compileAST(prg *js_ast.Program, strict, eval bool) (p *Program, err error) 
 
 	c.compile(prg)
 	p = c.p
-	bodyStr = fmt.Sprintf("%v", p.Body)
-	declStr = fmt.Sprintf("%v", p.DeclarationList)
-	fileStr = fmt.Sprintf("%v", p.File)
-	smapStr = fmt.Sprintf("%v", p.SourceMap)
-	fmt.Printf("....................compileAST2....................\nbodyStr = %\ndeclStr = %s\nfileStr = %s\nsmapStr = %s\n...................................................\n", bodyStr, declStr, fileStr, smapStr )
+
+	codeStr := fmt.Sprintf("%v", p.code)
+	valuesStr := fmt.Sprintf("%v", p.values)
+	funcNameStr := fmt.Sprintf("%v", p.funcName)
+	srcStr := fmt.Sprintf("%v", p.src)
+	srcMapStr := fmt.Sprintf("%v", p.srcMap)
+	fmt.Printf("....................compileAST2....................\ncodeStr = %\nvaluesStr = %s\nfuncNameStr = %s\nsrcStr = %s\nsrcMapStr = %s\n...................................................\n", codeStr, valuesStr, funcNameStr, srcStr, srcMapStr )
 	return
 }
 
@@ -2023,6 +2025,7 @@ func Null() Value {
 // NaN returns a JS NaN value.
 func NaN() Value {
 	return _NaN
+}
 
 // PositiveInf returns a JS +Inf value.
 func PositiveInf() Value {
