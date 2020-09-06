@@ -34,6 +34,7 @@ node types are concerned) and may change in the future.
 package parser
 
 import (
+	"fmt"
 	"bytes"
 	"errors"
 	"io"
@@ -134,6 +135,7 @@ func ReadSource(filename string, src interface{}) ([]byte, error) {
 //      program, err := parser.ParseFile(nil, "", `if (abc > 1) {}`, 0)
 //
 func ParseFile(fileSet *file.FileSet, filename string, src interface{}, mode Mode) (*ast.Program, error) {
+	fmt.Printf("...................ParseFile.......................\nfilename = %s\n...................................................\n", filename)
 	str, err := ReadSource(filename, src)
 	if err != nil {
 		return nil, err

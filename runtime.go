@@ -1113,7 +1113,7 @@ func compile(name, src string, strict, eval bool) (p *Program, err error) {
 }
 
 func compileAST(prg *js_ast.Program, strict, eval bool) (p *Program, err error) {
-	fmt.Printf("....................compileAST.....................\n%s\n...................................................\n", src)
+	//fmt.Printf("....................compileAST.....................\n%s\n...................................................\n", )
 	c := newCompiler()
 	c.scope.strict = strict
 	c.scope.eval = eval
